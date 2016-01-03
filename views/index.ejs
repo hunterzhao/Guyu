@@ -1,0 +1,150 @@
+<%include head%>
+    <!--登陆之后的页面-->
+
+    
+    <div class="container-fluid" ng-controller="IndexCtrl">
+         <!-- <div class="row-fluid"> -->
+         	   <div class="span4"></div>
+         	   <div class="span2">
+         	   	    <!-- 头像 -->
+         	   	    <div class="my-nav-user text-center">
+         	   	       <a href="">
+                       <image src="images/head/avatar.png" alt="headimage" class="img-rounded ">
+                       </a>
+                       <div class="text">
+                              <a href="">赵明</a>
+                       </div>
+                  </div>
+         	   	    <!-- 导航栏 -->
+         	   	   
+                  <div class="span2 bs-docs-sidebar text">
+                      <ul class="nav nav-list bs-docs-sidenav">
+                        <li class="nav-header">导航栏</li>
+                        <li class="active"><a href="#"><img src="images/glyphicons-21-home.png">&nbsp&nbsp首页</a></li>
+                        <li><a href="#"><img src="images/glyphicons-246-chat.png">&nbsp&nbsp讨论</a></li>
+                        <li><a href="#"><img src="images/glyphicons-41-stats.png">&nbsp&nbsp持仓盈亏</a></li>
+                        <li><a href="#"><img src="images/glyphicons-49-star-empty.png">&nbsp&nbsp收藏</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><img src="images/glyphicons-310-comments.png">&nbsp&nbsp评论我的</a></li>
+                        <li><a href="#"><img src="images/glyphicons-4-user.png">&nbsp&nbsp提到我的</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><img src="images/glyphicons-459-money.png">&nbsp&nbsp钱包</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><img src="images/glyphicons-52-eye-open.png">&nbsp&nbsp关注</a></li>
+                        <li><a href="#"><img src="images/glyphicons-20-heart-empty.png">&nbsp&nbsp粉丝</a></li>
+                         <li class="divider"></li>
+                        <li><a href="#"><img src="images/glyphicons-196-info-sign.png">&nbsp&nbsp关于谷雨</a></li>
+                        <li><a href="#"><img src="images/glyphicons-404-sorting.png">&nbsp&nbsp实盘交易</a></li>
+                        <li><a href="#"><img src="images/glyphicons-779-cube-empty.png">&nbsp&nbsp财经导航</a></li>
+                      </ul>
+                  </div><!--/.well -->
+            
+         	   	</div>
+              
+              <div class="span1"></div>
+
+                <!-- 组合简绍 大V状态 -->
+         	   	<div class="span8">
+                    <!-- 组合简介 -->
+                    <div class="mod">
+                      
+                        <!-- tab -->
+                    	<div bs-active-pane="tabs1.activeTab" bs-tabs>
+                            <div ng-repeat="tab in tabs1" title="{{ tab.title }}" name="{{ tab.title }}" disabled="{{ tab.disabled }}" bs-pane>
+
+                                   <table class='table table-striped'>
+                                        <thead>
+                                          <tr>
+                                             <th ng-repeat="colName in tab.head">{{colName}}</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                           <tr ng-repeat="line in tab.content">
+                                                <td ng-repeat="value in line" ng-bind-html="value | to_trusted"></td>
+                                           </tr>
+                                        </tbody>
+                                  </table>
+                            </div>
+                      </div>
+                    </div>
+                    
+                    <!-- 动态 -->
+                    <div class="mod">
+                    	<!-- 发表动态 -->
+                        <div class="">
+                        	<textarea></textarea><button class="btn btn-large" height="50px" type="button">发表</button>
+                        </div>
+                    	<!-- 查看动态 -->
+                    	<!-- tab -->
+                    	<div bs-active-pane="tabs.activeTab" bs-tabs>
+                             <div ng-repeat="tab in tabs2" title="{{ tab.title }}" name="{{ tab.title }}" disabled="{{ tab.disabled }}" bs-pane>        
+                                   <table>
+                                      <tr ng-repeat="person in tab.content track by $index">
+                                          <td class="span2">
+                                               <img src="{{person.headimg}}"  style="float:left">
+                                          </td>
+                                          <td class="span1"></td>
+                                          <td class="span10">
+                                                <p>{{person.name}}:</p>
+                                                <h4>{{person.title}}</h4>
+                                                <p>{{person.words}}</p>
+                                                <div class="text-right">
+                                                <a>评论</a><a>&nbsp&nbsp&nbsp&nbsp</a><a>点赞</a>
+                                                </div>
+                                                <hr></hr>
+                                          </td>
+                                       </tr> 
+                                    </table>
+                                   
+                             </div>
+                        </div>
+                    </div>
+         	   	</div>
+
+         	   	<!-- 广告 今日话题 今日热榜 -->
+         	   	<div class="span4">
+                       <!-- 广告栏 -->
+                       
+                       <!-- 今日话题 -->
+                        <div class="mod">
+	                          <div class="">
+	                              <h4>今日话题</h4>
+	                               <span class="more">
+	                                  <a href="#" target="_blank">更多</a>
+	                               </span>
+	                          </div>
+                              <!-- tab -->
+                              <div class="">
+		                    	        <div bs-active-pane="tabs.activeTab" bs-tabs>
+                                       <div ng-repeat="tab in tabs3" title="{{ tab.title }}" name="{{ tab.title }}" disabled="{{ tab.disabled }}" bs-pane>
+                                              <li ng-repeat="value in tab.content" ng-bind-html="value | to_trusted"></li>
+                                       </div>
+                                  </div>
+		                          </div>
+                        </div>
+
+                       
+
+                       <!-- 今日热榜 -->
+                        <div class="mod">
+	                          <div class="">
+	                              <h4>今日热榜</h4>
+	                               <span class="more">
+	                                  <a href="#" target="_blank">更多</a>
+	                               </span>
+	                          </div>
+                              
+                              <!-- tab -->
+                           <div class="">
+		                    	        <div bs-active-pane="tabs.activeTab" bs-tabs>
+                                       <div ng-repeat="tab in tabs4" title="{{ tab.title }}" name="{{ tab.title }}" disabled="{{ tab.disabled }}" bs-pane>
+                                              <li ng-repeat="value in tab.content" ng-bind-html="value | to_trusted"></li>
+                                       </div>
+                                  </div>
+		                       </div>
+                        </div>
+         	   	</div>
+         <!-- </div> -->
+    </div>
+
+<%include foot%>
