@@ -85,15 +85,12 @@
 						  }
 						];
 
-		    $scope.navs =[{
-                             "name":"zhao"
-		                 },
-		                 {
-		                 	"name":"hu"
-		                 },
-		                 {
-		                 	"name":"wu"
-		                 }]
+		    $scope.selectedIcon = "";
+            $scope.icons =  [{"value":"Gear","label":"<img src=\"images/glyphicons-246-chat.png\"> Gear"},
+                             {"value":"Globe","label":"<img src=\"images/glyphicons-310-comments.png\"> Globe"},
+                             {"value":"Heart","label":"<img src=\"images/glyphicons-52-eye-open.png\"> Heart"},
+                             {"value":"Camera","label":"<img src=\"images/glyphicons-196-info-sign.png\"> Camera"}]
+						    
 		    $scope.toggleThirdTab= function(){
                   $scope.tabs1[2].disabled=!$scope.tabs1[2].disabled;
 		    }

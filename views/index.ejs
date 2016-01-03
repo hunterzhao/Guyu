@@ -3,20 +3,20 @@
 
     
     <div class="container-fluid" ng-controller="IndexCtrl">
-         <!-- <div class="row-fluid"> -->
-         	   <div class="span4"></div>
-         	   <div class="span2">
-         	   	    <!-- 头像 -->
-         	   	    <div class="my-nav-user text-center">
-         	   	       <a href="">
+         <!-- <div class="row-fluid"> 不要自适应 防止页面在不同的分辨率页面发生形变-->
+             <div class="span4"></div>
+             <div class="span2">
+                  <!-- 头像 -->
+                  <div class="my-nav-user text-center">
+                     <a href="">
                        <image src="images/head/avatar.png" alt="headimage" class="img-rounded ">
                        </a>
                        <div class="text">
                               <a href="">赵明</a>
                        </div>
                   </div>
-         	   	    <!-- 导航栏 -->
-         	   	   
+                  <!-- 导航栏 -->
+                 
                   <div class="span2 bs-docs-sidebar text">
                       <ul class="nav nav-list bs-docs-sidenav">
                         <li class="nav-header">导航栏</li>
@@ -39,17 +39,17 @@
                       </ul>
                   </div><!--/.well -->
             
-         	   	</div>
+              </div>
               
               <div class="span1"></div>
 
                 <!-- 组合简绍 大V状态 -->
-         	   	<div class="span8">
+              <div class="span8">
                     <!-- 组合简介 -->
                     <div class="mod">
                       
                         <!-- tab -->
-                    	<div bs-active-pane="tabs1.activeTab" bs-tabs>
+                      <div bs-active-pane="tabs1.activeTab" bs-tabs>
                             <div ng-repeat="tab in tabs1" title="{{ tab.title }}" name="{{ tab.title }}" disabled="{{ tab.disabled }}" bs-pane>
 
                                    <table class='table table-striped'>
@@ -70,13 +70,25 @@
                     
                     <!-- 动态 -->
                     <div class="mod">
-                    	<!-- 发表动态 -->
+                      <!-- 发表动态 -->
                         <div class="">
-                        	<textarea></textarea><button class="btn btn-large" height="50px" type="button">发表</button>
+                          <form style="margin-bottom:0;">
+                                <div>
+                                    <textarea style="width: 605px; height: 40px;" ></textarea>
+                                    <div style="width: 620px; height: 40px;">
+                                        <div class="text-left" style="float:left">
+                                              <div title="插入表情" style="float:left"><img src="images/glyphicons-2-leaf.png">&nbsp&nbsp表情</div>
+                                              <div style="float:left"> &nbsp&nbsp&nbsp&nbsp</div>
+                                              <div title="插入股票" style="float:left"><img src="images/glyphicons-38-coins.png">&nbsp&nbsp股票</div>
+                                        </div>
+                                        <div style="float:right"><button type="submit" class="btn">发表</button></div>
+                                    </div>
+                                </div>
+                          </form>
                         </div>
-                    	<!-- 查看动态 -->
-                    	<!-- tab -->
-                    	<div bs-active-pane="tabs.activeTab" bs-tabs>
+                      <!-- 查看动态 -->
+                      <!-- tab -->
+                      <div bs-active-pane="tabs.activeTab" bs-tabs>
                              <div ng-repeat="tab in tabs2" title="{{ tab.title }}" name="{{ tab.title }}" disabled="{{ tab.disabled }}" bs-pane>        
                                    <table>
                                       <tr ng-repeat="person in tab.content track by $index">
@@ -99,51 +111,51 @@
                              </div>
                         </div>
                     </div>
-         	   	</div>
+              </div>
 
-         	   	<!-- 广告 今日话题 今日热榜 -->
-         	   	<div class="span4">
+              <!-- 广告 今日话题 今日热榜 -->
+              <div class="span4">
                        <!-- 广告栏 -->
                        
                        <!-- 今日话题 -->
                         <div class="mod">
-	                          <div class="">
-	                              <h4>今日话题</h4>
-	                               <span class="more">
-	                                  <a href="#" target="_blank">更多</a>
-	                               </span>
-	                          </div>
+                            <div class="">
+                                <h4>今日话题</h4>
+                                 <span class="more">
+                                    <a href="#" target="_blank">更多</a>
+                                 </span>
+                            </div>
                               <!-- tab -->
                               <div class="">
-		                    	        <div bs-active-pane="tabs.activeTab" bs-tabs>
+                                  <div bs-active-pane="tabs.activeTab" bs-tabs>
                                        <div ng-repeat="tab in tabs3" title="{{ tab.title }}" name="{{ tab.title }}" disabled="{{ tab.disabled }}" bs-pane>
                                               <li ng-repeat="value in tab.content" ng-bind-html="value | to_trusted"></li>
                                        </div>
                                   </div>
-		                          </div>
+                              </div>
                         </div>
 
                        
 
                        <!-- 今日热榜 -->
                         <div class="mod">
-	                          <div class="">
-	                              <h4>今日热榜</h4>
-	                               <span class="more">
-	                                  <a href="#" target="_blank">更多</a>
-	                               </span>
-	                          </div>
+                            <div class="">
+                                <h4>今日热榜</h4>
+                                 <span class="more">
+                                    <a href="#" target="_blank">更多</a>
+                                 </span>
+                            </div>
                               
                               <!-- tab -->
                            <div class="">
-		                    	        <div bs-active-pane="tabs.activeTab" bs-tabs>
+                                  <div bs-active-pane="tabs.activeTab" bs-tabs>
                                        <div ng-repeat="tab in tabs4" title="{{ tab.title }}" name="{{ tab.title }}" disabled="{{ tab.disabled }}" bs-pane>
                                               <li ng-repeat="value in tab.content" ng-bind-html="value | to_trusted"></li>
                                        </div>
                                   </div>
-		                       </div>
+                           </div>
                         </div>
-         	   	</div>
+              </div>
          <!-- </div> -->
     </div>
 
