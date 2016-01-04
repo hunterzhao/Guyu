@@ -1,0 +1,94 @@
+<%include head%>
+      <div class="container-fluid" ng-controller="MakeGroupCtrl">
+      	  <div class="span4"></div>
+			      <!-- 创建组合 -->
+			    <div class="span12">
+			      <div class="mode">
+			         <h4>基本信息</h4>
+			         <hr></hr>
+			         <form class="form-horizontal">
+						 <div class="control-group">
+						    <label class="control-label">组合名称</label>
+						    <div class="controls">
+						      <input type="text" id="GroupName" placeholder="取个好名字！">
+						    </div>
+						 </div>
+
+						 <div class="control-group">
+						    <label class="control-label">主理人建议</label>
+						    <div class="controls">
+						      <textarea type="text" id="suggestion" placeholder="说说投资建议"></textarea>
+						    </div>
+						  </div>
+					</form>
+			     </div>
+                
+                 <div class="mode">
+			         <h4>组成成分</h4>
+			         <hr></hr>
+			         <form class="form-horizontal">
+						 <div class="control-group">
+						    <label class="control-label">市场范围</label>
+						    <div class="controls">
+							      <button type="button" class="btn btn-default" ng-model="selectedIcon" data-html="1" bs-options="icon.value as icon.label for icon in icons" bs-select>
+									  <span class="caret"></span>
+									</button>
+						    </div>
+						 </div>
+
+						 <div class="control-group">
+						    <label class="control-label">添加成分股</label>
+						    <div class="controls mod">
+							    	<button type="button" class="btn btn-lg btn-danger" title="{{popover.title}}" data-content="{{popover.content}}" data-template-url="popover/popSetGroup.html" data-animation="am-flip-x" data-auto-close="1" bs-popover>＋ 添加
+									</button><!--end of button--> 
+                            &nbsp&nbsp已有{{0}}只股票</div>
+						    
+						    <div class="controls mod">
+						       <table class='table table-bordered'>
+                                        <thead>
+                                          <tr>
+                                             <th>行业</th>
+                                             <th>股票</th>
+                                             <th>价格</th>
+                                             <th>调整仓位</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                           <tr>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>3</td>
+                                                <td>4</td>
+                                           </tr>
+
+                                           <tr>
+                                                <td>1</td>
+                                                <td>2</td>
+                                                <td>3</td>
+                                                <td>4</td>
+                                           </tr>
+                                        </tbody>
+                                </table>
+						    </div>
+						    <!-- 配置进度条 -->
+                            
+						    <div class="controls">
+						    	
+							    <div class="progress progress-striped active" title="{{50}}%">
+								      <div class="bar" style="width: {{50}}%;"></div> 
+								      <div style="float:right">50%</div> 
+								</div>
+								
+							</div>
+                            
+						  </div>
+					</form>
+			     </div>
+
+			     <div class="control-group">
+                       <button class="btn btn-primary">完成!创建组合</button>
+			     </div>
+                 
+			    </div>
+      </div>
+<%include foot%>

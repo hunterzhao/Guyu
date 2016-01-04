@@ -8,7 +8,6 @@
              <div class="span2">
                   <!-- 头像 -->
                   <div class="my-nav-user text-center">
-                     <a href="">
                        <image src="images/head/avatar.png" alt="headimage" class="img-rounded ">
                        </a>
                        <div class="text">
@@ -45,9 +44,30 @@
 
                 <!-- 组合简绍 大V状态 -->
               <div class="span8">
+                    <!-- 期货指数情况 -->
+                    <div class="mod" style="height: 80px;">
+                         <div class="span2">
+                            <div style="border:1px solid #f0f0f0;height:80px">
+                                     <h4>沪深300</h4>
+                                     <p class="text-center"><img src="images/glyphicons-214-arrow-up.png">&nbsp&nbsp5843</p>
+                            </div>
+                          </div>
+                         <div class="span2">
+                            <div style="border:1px solid #f0f0f0;height:80px">
+                                     <h4>恒生指数</h4>
+                                     <p class="text-center"><img src="images/glyphicons-213-arrow-down.png">&nbsp&nbsp3423</p>
+                            </div>
+                          </div>
+                         <div class="span2">
+                            <div style="border:1px solid #f0f0f0;height:80px">
+                                     <h4>标准普尔</h4>
+                                     <p class="text-center"><img src="images/glyphicons-214-arrow-up.png">&nbsp&nbsp4239</p>
+                            </div>
+                          </div>
+                    </div>
                     <!-- 组合简介 -->
                     <div class="mod">
-                      
+                      <span class="more"><a  class="btn" href="/makeGroup" style="margin-buttom:10px">创建组合</a></span>
                         <!-- tab -->
                       <div bs-active-pane="tabs1.activeTab" bs-tabs>
                             <div ng-repeat="tab in tabs1" title="{{ tab.title }}" name="{{ tab.title }}" disabled="{{ tab.disabled }}" bs-pane>
@@ -77,7 +97,8 @@
                                     <textarea style="width: 605px; height: 40px;" ></textarea>
                                     <div style="width: 620px; height: 40px;">
                                         <div class="text-left" style="float:left">
-                                              <div title="插入表情" style="float:left"><img src="images/glyphicons-2-leaf.png">&nbsp&nbsp表情</div>
+                                              <div title="插入表情" style="float:left">
+                                                 <img src="images/glyphicons-2-leaf.png">&nbsp&nbsp表情</div>
                                               <div style="float:left"> &nbsp&nbsp&nbsp&nbsp</div>
                                               <div title="插入股票" style="float:left"><img src="images/glyphicons-38-coins.png">&nbsp&nbsp股票</div>
                                         </div>
@@ -92,8 +113,8 @@
                              <div ng-repeat="tab in tabs2" title="{{ tab.title }}" name="{{ tab.title }}" disabled="{{ tab.disabled }}" bs-pane>        
                                    <table>
                                       <tr ng-repeat="person in tab.content track by $index">
-                                          <td class="span2">
-                                               <img src="{{person.headimg}}"  style="float:left">
+                                          <td class="span2" style="vertical-align:top">
+                                               <img src="{{person.headimg}}"/>
                                           </td>
                                           <td class="span1"></td>
                                           <td class="span10">
@@ -133,6 +154,24 @@
                                        </div>
                                   </div>
                               </div>
+                        </div>
+
+
+                        <!-- 谷雨访谈 -->
+                        <div class="mod">
+                            <div class="">
+                                <h4>谷雨访谈</h4>
+                                 <span class="more">
+                                    <a href="#" target="_blank">更多</a>
+                                 </span>
+                            </div>
+                              <!-- tab -->
+                              <div class="">
+                                       
+                                     <li ng-repeat="value in talk" ng-bind-html="value | to_trusted"></li>
+                                     
+                              </div>
+                             
                         </div>
 
                        
