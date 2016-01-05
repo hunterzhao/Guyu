@@ -106,10 +106,35 @@
 			                {"value":"3","label":"日股"}];
             
             $scope.popover = {
-			  "title": "Title",
+			  "title": "增删成分股",
 			  "content": "Hello Popover <br/> This is a multiline message!",
+			  "candidate":["招商银行(SH92857)","建发股份(SH92857)","科力远(SH92857)","厦门国贸(SH92857)","南京银行(SH92857)","兴业银行(SH92857)",
+			                "招商银行(SH9f857)","建发股份(SZ92857)","科力远(SH928x7)","厦门国贸(SH42857)","南京银行(SH62857)","兴业银行(SH92852)",
+			                "招商银行(SH92897)","建发股份(SH92897)","科力远(SH92957)","厦门国贸(SH92957)","南京银行(SH99857)","兴业银行(SH92557)"],
+			  "selected":[],
 			  "saved": true
 			};
+            
+            $scope.selectedNumber=0;
+			$scope.select=function(value){
+				$scope.popover.selected.push(value);
+				// 删除备选股票列表中已选择的股票
+				var index = $scope.popover.candidate.indexOf(value);
+				if (index >= 0) {
+				  $scope.popover.candidate.splice( index, 1 );
+				}
+                $scope.selectedNumber++;
+			}
+
+			$scope.unselect=function(value){
+				$scope.popover.candidate.push(value);
+				// 删除备选股票列表中已选择的股票
+				var index = $scope.popover.selected.indexOf(value);
+				if (index >= 0) {
+				  $scope.popover.selected.splice( index, 1 );
+				}
+				$scope.selectedNumber--;
+			}
 	}]);
     
     app.filter('to_trusted',['$sce',function($sce){

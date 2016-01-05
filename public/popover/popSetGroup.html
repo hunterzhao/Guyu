@@ -3,19 +3,42 @@
   <div class="arrow"></div>
   <h3 class="popover-title" ng-bind-html="title" ng-show="title"></h3>
   <div class="popover-content">
-    <form name="popoverForm">
-      <p ng-bind-html="content" style="min-width:300px;"></p>
-      <pre>2 + 3 = <span ng-cloak>{{ 2 + 3 }}</span></pre>
-      <div class="form-group">
-        <div class="input-group">
-          <div class="input-group-addon">@</div>
-          <input class="form-control" type="email" placeholder="Enter email">
-        </div>
-      </div>
-      <div class="form-actions">
-        <button type="button" class="btn btn-danger" ng-click="$hide()">Close</button>
-        <button type="button" class="btn btn-primary" ng-click="popover.saved=true;$hide()">Save changes</button>
-      </div>
-    </form>
+    <div >
+             <!-- 左边 -->
+            <div class="span4">
+                    <div class="mod">
+                     <input type="text" id="stockName" style="float:center" placeholder="查询股票" ng-model="findStock">     
+                    </div>
+             
+             <!-- 股票备选列表 -->
+                     <div class ="mod" style="height:180px; width:220px;overflow:auto;border:2px solid gray;padding:2%">
+                        <ul>
+                            <li ng-repeat="stock in popover.candidate | filter:findStock" style="list-style-type:none;" ng-click="select(stock)">{{stock}}</li>
+                        </ul>
+                    </div>
+                    <p>已经选择了{{selectedNumber}}只股票</p>
+            </div><!--end of left -->
+            <!--  中线 -->
+            
+            <!--  右边 -->
+            <div class="span4">
+                     <div class="mod">
+                         <h4>已选股票列表</h4>
+                       </div>
+              <!-- 股票已选列表 -->
+                     <div class ="mod" style="height:180px; width:220px;overflow:auto;border:2px solid gray;padding:2%">
+                       <ul>
+                            <li ng-repeat="stock in popover.selected" style="list-style-type:none;" ng-click="unselect(stock)">{{stock}}<li>
+                       </ul>
+                     </div>
+            </div>
+                 
+                        
+                  
+             
+             <!-- 股票备选列表 -->
+
+            <!--end of left -->
+    </div><!--end of form-->
   </div>
 </div>
