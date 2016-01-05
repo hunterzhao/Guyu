@@ -1,5 +1,5 @@
 
-	var app=angular.module('myApp',['mgcrea.ngStrap','ngSanitize']);
+	var app=angular.module('myApp',['mgcrea.ngStrap','ngSanitize','angularAwesomeSlider']);
     
     app.controller('HeadCtrl',['$scope',function($scope){
 
@@ -99,6 +99,10 @@
     }]);
 
     app.controller('MakeGroupCtrl',['$scope',function($scope){
+
+    	    var stockList=[{"industry":"银行","name":"招商银行(SH92857)","price":"12.9","value":"0"},{"industry":"银行","name":"南京银行(SH92853)","price":"19.9","value":"0"},
+    	                   {"industry":"保险","name":"平安保险(SH92877)","price":"10.9","value":"0"},{"industry":"保险","name":"人寿保险(SH92457)","price":"11.9","value":"0"},
+    	                   {"industry":"科技","name":"腾讯科技(SH82857)","price":"20.9","value":"0"},{"industry":"科技","name":"华为科技(SH95857)","price":"15.9","value":"0"}];
             $scope.selectedIcon = "0";
 			$scope.icons = [{"value":"0","label":"沪深"},
 			                {"value":"1","label":"美股"},
@@ -108,14 +112,35 @@
             $scope.popover = {
 			  "title": "增删成分股",
 			  "content": "Hello Popover <br/> This is a multiline message!",
-			  "candidate":["招商银行(SH92857)","建发股份(SH92857)","科力远(SH92857)","厦门国贸(SH92857)","南京银行(SH92857)","兴业银行(SH92857)",
-			                "招商银行(SH9f857)","建发股份(SZ92857)","科力远(SH928x7)","厦门国贸(SH42857)","南京银行(SH62857)","兴业银行(SH92852)",
-			                "招商银行(SH92897)","建发股份(SH92897)","科力远(SH92957)","厦门国贸(SH92957)","南京银行(SH99857)","兴业银行(SH92557)"],
+			  "candidate":stockList.slice(),
 			  "selected":[],
 			  "saved": true
 			};
             
             $scope.selectedNumber=0;
+            $scope.value="0";//slider的最大值
+            $scope.options = {       
+		        from: 0,
+		        to: 100,
+		        step: 0.1,
+		        // dimension: "",
+		        css: {
+		          background: {"background-color": "silver"},
+		          before: {"background-color": "green"},
+		          default: {"background-color": "white"},
+		          after: {"background-color": "green"},
+		          pointer: {"background-color": "red"}          
+		        }        
+		      };
+            
+            $scope.progress=function(){
+            	var sum=0;
+            	var list=$scope.popover.selected;
+            	for(var i=0;i<list.length;i++){
+                      sum+=list[i].value;
+            	} 
+            	return sum;
+            }();
 			$scope.select=function(value){
 				$scope.popover.selected.push(value);
 				// 删除备选股票列表中已选择的股票
@@ -134,6 +159,12 @@
 				  $scope.popover.selected.splice( index, 1 );
 				}
 				$scope.selectedNumber--;
+			}
+
+			$scope.reset=function(){
+				 $scope.popover.candidate=stockList.slice();
+				 $scope.popover.selected=[];
+				 $scope.selectedNumber=0;
 			}
 	}]);
     

@@ -1,5 +1,5 @@
 
-<div class="popover" tabindex="-1" ng-show="content">
+<div class="popover" tabindex="-1" ng-show="content" role="dialog">
   <div class="arrow"></div>
   <h3 class="popover-title" ng-bind-html="title" ng-show="title"></h3>
   <div class="popover-content">
@@ -13,7 +13,7 @@
              <!-- 股票备选列表 -->
                      <div class ="mod" style="height:180px; width:220px;overflow:auto;border:2px solid gray;padding:2%">
                         <ul>
-                            <li ng-repeat="stock in popover.candidate | filter:findStock" style="list-style-type:none;" ng-click="select(stock)">{{stock}}</li>
+                            <li ng-repeat="stock in popover.candidate | filter:findStock" style="list-style-type:none;" ng-click="select(stock)">{{stock.name}}<a style="float:right">详情</a></li>
                         </ul>
                     </div>
                     <p>已经选择了{{selectedNumber}}只股票</p>
@@ -28,8 +28,15 @@
               <!-- 股票已选列表 -->
                      <div class ="mod" style="height:180px; width:220px;overflow:auto;border:2px solid gray;padding:2%">
                        <ul>
-                            <li ng-repeat="stock in popover.selected" style="list-style-type:none;" ng-click="unselect(stock)">{{stock}}<li>
+                            <li ng-repeat="stock in popover.selected" style="list-style-type:none;" ng-click="unselect(stock)">
+                              {{stock.name}}<a style="float:right">详情</a></li>
                        </ul>
+                     </div>
+
+                     <div>
+                            <button class="btn btn-primary" style="float:right" ng-click="reset();$hide()">取消</button> 
+                            <div style="float:right">&nbsp&nbsp&nbsp&nbsp</div>
+                            <button class="btn btn-danger" style="float:right" ng-click="popover.saved=true;$hide()">确定</button>
                      </div>
             </div>
                  

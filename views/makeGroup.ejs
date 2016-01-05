@@ -41,7 +41,7 @@
 						    <div class="controls mod">
 							    	<button type="button" class="btn btn-lg btn-danger" title="{{popover.title}}" data-content="{{popover.content}}" data-template-url="popover/popSetGroup.html" data-animation="am-flip-x" data-auto-close="1" bs-popover>＋ 添加
 									</button><!--end of button--> 
-                            &nbsp&nbsp已有{{0}}只股票</div>
+                            &nbsp&nbsp已有{{selectedNumber}}只股票</div>
 						    
 						    <div class="controls mod">
 						       <table class='table table-bordered'>
@@ -54,18 +54,11 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                           <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                                <td>4</td>
-                                           </tr>
-
-                                           <tr>
-                                                <td>1</td>
-                                                <td>2</td>
-                                                <td>3</td>
-                                                <td>4</td>
+                                           <tr ng-repeat="stock in popover.selected">
+                                                <td>{{stock.industry}}</td>
+                                                <td>{{stock.name}}</td>
+                                                <td>{{stock.price}}</td>
+                                                <td><input ng-model="{{stock.value}}" type="text" id="mySlider1" slider options="options" /></td>
                                            </tr>
                                         </tbody>
                                 </table>
@@ -74,9 +67,9 @@
                             
 						    <div class="controls">
 						    	
-							    <div class="progress progress-striped active" title="{{50}}%">
-								      <div class="bar" style="width: {{50}}%;"></div> 
-								      <div style="float:right">50%</div> 
+							    <div class="progress progress-striped active">
+								      <div class="bar" style="width: {{progress}}%;"></div> 
+								      <div style="float:right">{{progress}}%</div> 
 								</div>
 								
 							</div>
