@@ -47,18 +47,19 @@
 						       <table class='table table-bordered'>
                                         <thead>
                                           <tr>
-                                             <th>行业</th>
-                                             <th>股票</th>
-                                             <th>价格</th>
-                                             <th>调整仓位</th>
+                                             <th style="text-align:center;">行业</th>
+                                             <th style="text-align:center;">股票</th>
+                                             <th style="text-align:center;">价格</th>
+                                             <th >调整仓位</th>
                                           </tr>
                                         </thead>
                                         <tbody>
-                                           <tr ng-repeat="stock in popover.selected">
+                                           <tr ng-repeat="stock in popover.selected" ng-controller="ValueCtrl">
                                                 <td>{{stock.industry}}</td>
                                                 <td>{{stock.name}}</td>
                                                 <td>{{stock.price}}</td>
-                                                <td><input ng-model="{{stock.value}}" type="text" id="mySlider1" slider options="options" /></td>
+                                                <td><input ng-model="stock.value" type="text" id="mySlider1" slider options="options" /></td>
+                                                <td><input ng-model="stock.value" style="width:50px;" type="text" />%</td>
                                            </tr>
                                         </tbody>
                                 </table>
@@ -69,7 +70,7 @@
 						    	
 							    <div class="progress progress-striped active">
 								      <div class="bar" style="width: {{progress}}%;"></div> 
-								      <div style="float:right">{{progress}}%</div> 
+								      <div style="float:right">剩余{{progress}}%</div> 
 								</div>
 								
 							</div>

@@ -98,7 +98,7 @@
 		    }
     }]);
 
-    app.controller('MakeGroupCtrl',['$scope',function($scope){
+    app.controller('MakeGroupCtrl',['$scope','$rootScope',function($scope,$rootScope){
 
     	    var stockList=[{"industry":"银行","name":"招商银行(SH92857)","price":"12.9","value":"0"},{"industry":"银行","name":"南京银行(SH92853)","price":"19.9","value":"0"},
     	                   {"industry":"保险","name":"平安保险(SH92877)","price":"10.9","value":"0"},{"industry":"保险","name":"人寿保险(SH92457)","price":"11.9","value":"0"},
@@ -132,15 +132,8 @@
 		          pointer: {"background-color": "red"}          
 		        }        
 		      };
-            
-            $scope.progress=function(){
-            	var sum=0;
-            	var list=$scope.popover.selected;
-            	for(var i=0;i<list.length;i++){
-                      sum+=list[i].value;
-            	} 
-            	return sum;
-            }();
+            $rootScope.progress=100;
+          
 			$scope.select=function(value){
 				$scope.popover.selected.push(value);
 				// 删除备选股票列表中已选择的股票
@@ -168,6 +161,18 @@
 			}
 	}]);
     
+    app.controller('ValueCtrl',['$scope','$rootScope',function($scope,$rootScope){
+            //监听被选的股票列表，如果value发生变化，则立即改变progress
+            $scope.$watch('stock.value',function(newValue,oldValue){
+            	var ans=$rootScope.progress+Number(oldValue)-Number(newValue);
+            	if(ans<0){
+            		alert("超出预算");
+            		$scope.stock.value=oldValue;
+            	}
+            	$rootScope.progress=ans;
+                
+            });
+    }]);
     app.filter('to_trusted',['$sce',function($sce){
     	return function(text){
     		return $sce.trustAsHtml(text);
