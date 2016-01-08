@@ -1,5 +1,5 @@
 
-	var app=angular.module('myApp',['mgcrea.ngStrap','ngSanitize','angularAwesomeSlider']);
+	var app=angular.module('myApp',['mgcrea.ngStrap','ngSanitize','angularAwesomeSlider','chart.js']);
     
     app.controller('HeadCtrl',['$scope',function($scope){
 
@@ -11,7 +11,7 @@
 						  {
 						    "title": "套利组合",
 						    "head":["组合名称","净值","日收益","月收益","总收益"],
-						    "content": [["<a href='#'>你好雪球</a>","0.9900","+0.01","-0.01%","-1.00%"],
+						    "content": [["<a href='/group'>你好雪球</a>","0.9900","+0.01","-0.01%","-1.00%"],
 						                ["<a href='#'>从中国中铁开始</a>","2.2555","-0.02%","-0.05%","+125.55%"],
 						                ["<a href='#'>中线稳赚</a>","2.3431","-2.12%","-1.77%","+134.31%"]
 						               ]
@@ -144,11 +144,12 @@
                 $scope.selectedNumber++;
 			}
 
-			$scope.unselect=function(value){
-				$scope.popover.candidate.push(value);
+			$scope.unselect=function(stock){
+				$scope.popover.candidate.push(stock);
 				// 删除备选股票列表中已选择的股票
-				var index = $scope.popover.selected.indexOf(value);
+				var index = $scope.popover.selected.indexOf(stock);
 				if (index >= 0) {
+				  stock.value=0;
 				  $scope.popover.selected.splice( index, 1 );
 				}
 				$scope.selectedNumber--;
@@ -159,11 +160,14 @@
 				 $scope.popover.selected=[];
 				 $scope.selectedNumber=0;
 			}
+
+
 	}]);
     
     app.controller('ValueCtrl',['$scope','$rootScope',function($scope,$rootScope){
             //监听被选的股票列表，如果value发生变化，则立即改变progress
             $scope.$watch('stock.value',function(newValue,oldValue){
+            	
             	var ans=$rootScope.progress+Number(oldValue)-Number(newValue);
             	if(ans<0){
             		alert("超出预算");
@@ -172,6 +176,59 @@
             	$rootScope.progress=ans;
                 
             });
+
+            $scope.delete=function(){
+            	 $rootScope.progress+=Number($scope.stock.value);
+                 $scope.unselect($scope.stock);       
+            }
+
+    }]);
+
+    app.controller('GroupCtrl',['$scope',function($scope){
+            $scope.groupName="你好雪球";
+            $scope.groupID="ZH771072";
+
+            $scope.labels2 = ["Download Sales", "In-Store Sales", "Mail-Order Sales"];
+            $scope.data2 = [300, 500, 100];
+            
+            $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
+			$scope.series = ['Series A', 'Series B'];
+			$scope.data = [
+			    [65, 59, 80, 81, 56, 55, 40],
+			    [28, 48, 40, 19, 86, 27, 90]
+			];
+            
+			$scope.changes=[{"name":"兴业银行","price":"17.48","change":"0.00%->25.00%"},
+			                {"name":"招商银行","price":"17.48","change":"0.00%->25.00%"},
+			                {"name":"厦门国贸","price":"17.48","change":"0.00%->25.00%"},
+			                {"name":"交通银行","price":"17.48","change":"0.00%->25.00%"},]
+
+			$scope.tabs2 =[
+						  {
+						    "title": "市场",
+						    "content":[{"headimg":"/images/head/zhao.png","name":"赵明","title":"元旦节快乐","words":"元旦的股市不错，大家要再接再厉，争取春节买头牛回去"},
+						               {"headimg":"/images/head/huyun.png","name":"胡赟","title":"春节快乐","words":"春节的股市不错，大家要再接再厉，争取端午买头牛回去"}] 
+						  },
+						  {
+						    "title": "分析",
+						    "content":[{"headimg":"/images/head/zhao.png","name":"赵明","title":"元旦节快乐","words":"元旦的股市不错，大家要再接再厉，争取春节买头牛回去"},
+						               {"headimg":"/images/head/huyun.png","name":"胡赟","title":"春节快乐","words":"春节的股市不错，大家要再接再厉，争取端午买头牛回去"}] 
+						  },
+						  {
+						    "title": "理念",
+						    "content":[{"headimg":"/images/head/zhao.png","name":"赵明","title":"元旦节快乐","words":"元旦的股市不错，大家要再接再厉，争取春节买头牛回去"},
+						               {"headimg":"/images/head/huyun.png","name":"胡赟","title":"春节快乐","words":"春节的股市不错，大家要再接再厉，争取端午买头牛回去"}] 
+						  }
+						];
+
+			$scope.warehouse=[{"name":"兴业银行","weight":"26.20"},
+			                  {"name":"招商银行","weight":"26.20"},
+			                  {"name":"交通银行","weight":"26.20"},
+			                  {"name":"厦门国贸","weight":"26.20"}];
+
+            $scope.onClick = function (points, evt) {
+			    console.log(points, evt);
+			};
     }]);
     app.filter('to_trusted',['$sce',function($sce){
     	return function(text){

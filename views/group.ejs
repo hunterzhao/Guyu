@@ -1,0 +1,110 @@
+<%include head%>
+        <div class="container-fluid" ng-controller="GroupCtrl">
+        	<div class="span4"></div>
+
+        	<div class="span12">
+        		       <div class="mod">
+		                  <h4>{{groupName}}&nbsp&nbsp{{groupID}}</h4>
+		                  <a  class="btn more" href="/makeGroup" style="margin-buttom:10px"><img src="images/glyphicons-140-adjust-alt.png">&nbsp&nbsp调仓</a>
+                   </div>
+                   <div style="height:300px; background:#4488ed;" class="mod">
+                   	      <!-- <p style="font-size:100px;color:white">{{-9.81}}%</p><p>总收益</p> -->
+                   </div>
+                   
+                   <!-- 左栏 -->
+                   <div class="span6">
+                          <!-- 价格走势 -->
+                          <div class="mod">
+                              <h4>收益率走势</h4>
+                              <canvas id="line" class="chart chart-line" chart-data="data"
+                                chart-labels="labels" chart-legend="true" chart-series="series"
+                                chart-click="onClick" >
+                              </canvas> 
+                          </div>
+                          <!-- 最新调仓 -->
+                          <div class="mod">
+                               <h4>最新调仓</h4>
+                               <p>调仓理由:{{"没有理由"}}</p>
+                               <table class="table">
+                                  <tr ng-repeat="line in changes">
+                                   <td>{{line.name}}</td>
+                                   <td>{{line.price}}</td>
+                                   <td>{{line.change}}</td>
+                                  </tr> 
+                               </table>
+                          </div>
+                          <!-- 留言讨论区 -->
+                          <div class="mod">
+                          <!-- 发表动态 -->
+                            <div class="">
+                              <form style="margin-bottom:0;">
+                                    <div>
+                                        <textarea style="width: 455px; height: 40px;" ></textarea>
+                                        <div style="width: 470px; height: 40px;">
+                                            <div class="text-left" style="float:left">
+                                                  <div title="插入表情" style="float:left">
+                                                     <img src="images/glyphicons-2-leaf.png">&nbsp&nbsp表情</div>
+                                                  <div style="float:left"> &nbsp&nbsp&nbsp&nbsp</div>
+                                                  <div title="插入股票" style="float:left"><img src="images/glyphicons-38-coins.png">&nbsp&nbsp股票</div>
+                                            </div>
+                                            <div style="float:right"><button type="submit" class="btn">发表</button></div>
+                                        </div>
+                                    </div>
+                              </form>
+                            </div>
+                          <!-- 查看动态 -->
+                          <!-- tab -->
+                          <div bs-active-pane="tabs.activeTab" bs-tabs>
+                                 <div ng-repeat="tab in tabs2" title="{{ tab.title }}" name="{{ tab.title }}" disabled="{{ tab.disabled }}" bs-pane>        
+                                       <table>
+                                          <tr ng-repeat="person in tab.content track by $index">
+                                              <td class="span2" style="vertical-align:top">
+                                                   <img src="{{person.headimg}}"/>
+                                              </td>
+                                              <td class="span1"></td>
+                                              <td class="span10">
+                                                    <p>{{person.name}}:</p>
+                                                    <h4>{{person.title}}</h4>
+                                                    <p>{{person.words}}</p>
+                                                    <div class="text-right">
+                                                    <a>评论</a><a>&nbsp&nbsp&nbsp&nbsp</a><a>点赞</a>
+                                                    </div>
+                                                    <hr></hr>
+                                              </td>
+                                           </tr> 
+                                        </table>
+                                       
+                                 </div>
+                            </div>
+                        </div><!--end of 动态-->
+                   </div>
+                   
+                  
+                   <!-- 右栏-->
+                   <div class="span5">
+                   	      <!-- 股票配置饼图 -->
+                          <div class="mod">
+                              <h4>股票配置图</h4>
+                              <canvas id="doughnut" class="chart chart-doughnut"
+                                chart-data="data2" chart-labels="labels2">
+                              </canvas> 
+                           </div>
+                   	      <!-- 详细仓位 -->
+                          <div class="mod">
+                              <h4>详细仓位</h4>
+                               <div style="height:180px; width:350px;overflow:auto;border:2px solid white;padding:2%">
+                                    <table class="table">
+                                        <tr ng-repeat="line in warehouse">
+                                         <td>{{line.name}}</td>
+                                         <td>{{line.weight}}</td>
+                                        </tr> 
+                                     </table>
+                               </div>
+                          </div>
+
+                   </div>
+        	</div>
+
+        	
+        </div>
+<%include foot%>
